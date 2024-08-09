@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traductor a Sumerio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            width: 50%;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Traductor a Sumerio</h1>
+        <textarea id="inputText" placeholder="Escribe aquí..."></textarea>
+        <textarea id="outputText" readonly placeholder="Traducción al sumerio..."></textarea>
+    </div>
+
+    <script>
+        // Abecedario sumerio simulado
+        const abecedarioSumerio = {
+            'a': '𒀀', 'á': '𒀁', 'b': '𒁀', 'c': '𒍑', 'd': '𒁲', 
+            'e': '𒂊', 'é': '𒂋', 'f': '𒉿', 'g': '𒂅', 'h': '𒄭', 
+            'i': '𒅎', 'í': '𒅏', 'j': '𒃾', 'k': '𒆠', 'l': '𒇻', 
+            'm': '𒈠', 'n': '𒉌', 'o': '𒂁', 'ó': '𒂂', 'p': '𒉺', 
+            'q': '𒋡', 'r': '𒊑', 's': '𒊓', 't': '𒋼', 'u': '𒌋', 
+            'ú': '𒌍', 'v': '𒍝', 'w': '𒉿', 'x': '𒍣', 'y': '𒅆', 
+            'z': '𒍣', 'ñ': '𒐉', ':': '𒑖', ';': '𒑛', ' ': ' ', 
+            '.': '𒑰', ',': '𒑱'
+        };
+
+        function traducirASumerio(texto) {
+            return texto.toLowerCase().split('').map(caracter => 
+                abecedarioSumerio[caracter] || caracter
+            ).join('');
+        }
+
+        document.getElementById("inputText").addEventListener("input", function() {
+            let textoIngresado = this.value;
+            let traduccion = traducirASumerio(textoIngresado);
+            document.getElementById("outputText").value = traduccion;
+        });
+    </script>
+</body>
+</html>
